@@ -183,12 +183,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\OdeToFoodDb.cs" />
+    <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\RestaurantReview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -303,12 +304,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Reviews\Index.cshtml" />
-    <Content Include="Views\Reviews\Edit.cshtml" />
-    <Content Include="Views\Reviews\_Review.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Reviews\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
