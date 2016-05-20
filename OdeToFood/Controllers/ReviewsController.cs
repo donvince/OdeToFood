@@ -44,6 +44,25 @@ namespace OdeToFood.Controllers
             return View(review);
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var model = _db.Reviews.Find(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(RestaurantReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Entry(review).State = EntityState.Modified;
+                _db.SaveChanges();
+                return RedirectToAction("Index", new {id = review.RestaurantId});
+            }
+            return View(review);
+        }
+
         //
         // GET: /Reviews/Details/5
 
