@@ -1,0 +1,56 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using OdeToFood.Models;
+
+namespace OdeToFood.Controllers
+{
+    public class ReviewsController : Controller
+    {
+        private OdeToFoodDb _db = new OdeToFoodDb();
+
+        //
+        // GET: /Reviews/
+
+        public ActionResult Index([Bind(Prefix = "id")] int restaurantId)
+        {
+            var restaurant = _db.Restaurants.Find(restaurantId);
+            if (restaurant != null)
+            {
+                return View(restaurant);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpGet]
+        public ActionResult Create(int restaurantid)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(RestaurantReview review)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Reviews.Add(review);
+                _db.SaveChanges();
+                return RedirectToAction("Index", new { id = review.RestaurantId });
+            }
+            return View(review);
+        }
+
+        //
+        // GET: /Reviews/Details/5
+
+        protected override void Dispose(bool disposing)
+        {
+            _db.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+}
