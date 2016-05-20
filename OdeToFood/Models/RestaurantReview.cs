@@ -6,6 +6,20 @@ using System.Web;
 
 namespace OdeToFood.Models
 {
+    public class ComplexityAttribute : ValidationAttribute
+    {
+        public ComplexityAttribute() : base("{0} isn't complicated enough yet")
+        {
+            
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var errorMessage = FormatErrorMessage(validationContext.DisplayName);
+            return new ValidationResult(errorMessage);
+        }
+    }
+
     public class RestaurantReview
     {
         public int Id { get; set; }
