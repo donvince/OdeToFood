@@ -3,21 +3,12 @@
     ViewBag.Title = "Home Page";
 }
 
-@*<form method="GET">
-    <input type="search" name="searchTerm" />
+<form method="GET" action="@Url.Action("Index")"
+    data-otf-ajax="true" data-otf-target="#restaurantsList">
+    <input type="search" name="searchTerm" data-otf-autocomplete="@Url.Action("Autocomplete")" />
     <input type="submit" value="Search by Name" />
-</form>*@
+</form>
 
-@using (Ajax.BeginForm(
-    new AjaxOptions
-        {
-            HttpMethod = "get",
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = "restaurantList"
-        }))
-{
-    <input type="search" name="searchTerm" />
-    <input type="submit" value="Search By Name" />
-}
+
 
 @Html.Partial("_Restaurants", Model)
