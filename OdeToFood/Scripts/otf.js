@@ -18,10 +18,19 @@ $(function () {
         return false;
     };
     
+    var submitAutocompleteForm = function (event, ui) {
+        var $input = $(this);
+        $input.val(ui.item.label); //sometimes form hasn't updated yet so lots force it
+
+        var $form = $input.parents("form:first");
+        $form.submit();
+    };
+    
     var createAutocomplete = function () {
         var $input = $(this);
         var options = {
-            source: $input.attr("data-otf-autocomplete")
+            source: $input.attr("data-otf-autocomplete"),
+            select: submitAutocompleteForm
         };
 
         $input.autocomplete(options);
