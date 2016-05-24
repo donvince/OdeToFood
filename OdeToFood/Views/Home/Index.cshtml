@@ -4,11 +4,11 @@
 }
 
 <form method="GET" action="@Url.Action("Index")"
-    data-otf-ajax="true" data-otf-target="#restaurantsList">
-    <input type="search" name="searchTerm" data-otf-autocomplete="@Url.Action("Autocomplete")" />
+      data-otf-ajax="true" data-otf-target="#restaurantList">
+    
+    <input type="search" name="searchTerm" />
     <input type="submit" value="Search by Name" />
 </form>
-
 
 
 @Html.Partial("_Restaurants", Model)
