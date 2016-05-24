@@ -19,10 +19,4 @@ $(function () {
     };
 
     $("form[data-otf-ajax='true']").submit(ajaxFormSubmit);
-
-
-    var bad = $(undefined);
-    var good = $("form[data-otf-ajax='true']");
-
-
 });
