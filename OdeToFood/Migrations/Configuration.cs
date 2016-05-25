@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Web.Security;
 using OdeToFood.Models;
+using WebMatrix.WebData;
 
 namespace OdeToFood.Migrations
 {
@@ -40,6 +42,30 @@ namespace OdeToFood.Migrations
                             City = "Nowhere",
                             Country = "USA"
                         });
+            }
+
+            SeedMembership();
+        }
+
+        private void SeedMembership()
+        {
+            WebSecurity.InitializeDatabaseConnection("DefaultConnection",
+                "UserProfile", "UserId", "UserName", autoCreateTables: true);
+
+            var roles = (SimpleRoleProvider)Roles.Provider;
+            var membership = (SimpleMembershipProvider)Membership.Provider;
+
+            if (!roles.RoleExists("Admin"))
+            {
+                roles.CreateRole("Admin");
+            }
+            if (membership.GetUser("dvince", false) == null)
+            {
+                membership.CreateUserAndAccount("dvince", "cheese");
+            }
+            if (!roles.GetRolesForUser("dvince").Contains("Admin"))
+            {
+                roles.AddUsersToRoles(new[] { "dvince" }, new[] { "admin" });
             }
         }
     }
